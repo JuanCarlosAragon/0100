@@ -61,6 +61,9 @@ public class BallDemo
             }
         }
     }
+    /*
+     * Selecciona un color al azar
+     */
     private Color selectColor(){
         Color[] colores = new Color[13];
         colores[0] = Color.BLACK;
@@ -81,5 +84,46 @@ public class BallDemo
         
         return colores[rndColor.nextInt(13)];
         
+    }
+    /**
+     * Dibuja una caja con bolas que rebotan en sus paredes
+     * 
+     * @param numOfBalls numero de bolas que se crean dentro de la caja
+     */
+    public void boxBounce(int numOfBalls){
+        int limitUp = 20;
+        int limitDown = 450;
+        int limitRight = 500;
+        int limitLeft = 50;
+        
+        BoxBall[] balls = new BoxBall[numOfBalls]; //Array de bolas
+        
+        Random rnd = new Random();
+        for(int i = 0; i<balls.length; i++){
+            //Inicializamos las bolas
+            int diameter = rnd.nextInt(60)+1;
+            balls[i] = new BoxBall(rnd.nextInt(limitRight-limitLeft)+(limitLeft)-diameter, rnd.nextInt(limitDown - limitUp) + (limitUp)- diameter, diameter, selectColor(), limitDown, limitUp, limitRight, limitLeft, myCanvas);
+        }
+        
+        //Dibujamos el cuadrado
+        myCanvas.drawLine(limitLeft, limitUp, limitRight, limitUp);//Linea superior
+        myCanvas.drawLine(limitLeft, limitDown, limitRight, limitDown);//Linea inferior
+        myCanvas.drawLine(limitLeft, limitUp, limitLeft, limitDown);//Linea izquierda
+        myCanvas.drawLine(limitRight, limitUp, limitRight, limitDown);//Linea derecha
+        
+        //Show the balls
+        for(int i = 0; i<balls.length; i++){
+            balls[i].draw();
+        }
+        // make them bounce
+        boolean finished =  false;
+        
+        while(!finished) {
+            myCanvas.wait(20);  // small delay
+            for(int i = 0; i<balls.length; i++){
+                balls[i].move();
+            }
+            
+        }
     }
 }
