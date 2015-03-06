@@ -65,24 +65,10 @@ public class BallDemo
      * Selecciona un color al azar
      */
     private Color selectColor(){
-        Color[] colores = new Color[13];
-        colores[0] = Color.BLACK;
-        colores[1] = Color.BLUE;
-        colores[2] = Color.CYAN;
-        colores[3] = Color.DARK_GRAY;
-        colores[4] = Color.GRAY;
-        colores[5] = Color.GREEN;
-        colores[6] = Color.LIGHT_GRAY;
-        colores[7] = Color.MAGENTA;
-        colores[8] = Color.ORANGE;
-        colores[9] = Color.PINK;
-        colores[10] = Color.RED;
-        colores[11] = Color.WHITE;
-        colores[12] = Color.YELLOW;
         
         Random rndColor = new Random();
         
-        return colores[rndColor.nextInt(13)];
+        return Color.getHSBColor(rndColor.nextFloat()*360, rndColor.nextFloat()*100, rndColor.nextFloat()*100);
         
     }
     /**
