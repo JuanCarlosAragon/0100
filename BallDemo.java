@@ -28,10 +28,12 @@ public class BallDemo
     {
         int ground = 400;   // position of the ground line
         BouncingBall[] balls = new BouncingBall[numOfBalls];//Array de bolas
+        
+        
         Random rnd = new Random();
         for(int i = 0; i<balls.length; i++){
             //Inicializamos las bolas
-            balls[i] = new BouncingBall(rnd.nextInt(250), rnd.nextInt(400), rnd.nextInt(60)+1, Color.BLUE, ground, myCanvas);
+            balls[i] = new BouncingBall(rnd.nextInt(250), rnd.nextInt(400), rnd.nextInt(60)+1, selectColor(), ground, myCanvas);
         }
 
         myCanvas.setVisible(true);
@@ -58,5 +60,26 @@ public class BallDemo
                 }
             }
         }
+    }
+    private Color selectColor(){
+        Color[] colores = new Color[13];
+        colores[0] = Color.BLACK;
+        colores[1] = Color.BLUE;
+        colores[2] = Color.CYAN;
+        colores[3] = Color.DARK_GRAY;
+        colores[4] = Color.GRAY;
+        colores[5] = Color.GREEN;
+        colores[6] = Color.LIGHT_GRAY;
+        colores[7] = Color.MAGENTA;
+        colores[8] = Color.ORANGE;
+        colores[9] = Color.PINK;
+        colores[10] = Color.RED;
+        colores[11] = Color.WHITE;
+        colores[12] = Color.YELLOW;
+        
+        Random rndColor = new Random();
+        
+        return colores[rndColor.nextInt(13)];
+        
     }
 }
